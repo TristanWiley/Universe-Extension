@@ -7,7 +7,7 @@ body {
     background: #F06449;
 }
 
-div {
+.main {
     text-align: center;
     display: table-cell;
     font-family: sans-serif;
@@ -31,5 +31,90 @@ input {
     font-size: 12px;
     padding: 0 12px;
     margin-top: 10px;
+    margin-bottom: 10px;
     border: 0;
 }
+
+.footer{
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.userName{
+    width: 50%;
+    margin-top: 0px;
+}
+
+  .container {
+    margin: 10px 0 0 0;
+    padding: 0;
+    position: relative;
+    height: 235px !important;
+    overflow-y: auto;
+  }
+  
+  .item {
+    background: #ddd;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 60px;
+    margin: 2px 0;
+    width: 100%;
+    -webkit-transition: width 0.6s ease;
+    transition: width 0.6s ease;
+  }
+
+  .avatar {
+    background: #f80;
+    position: relative;
+    width: 60px;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+  }
+  
+  .text {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    overflow: hidden;
+    padding: 8px;
+  }
+  .text h1 {
+    font-size: 1.8em;
+    font-weight: normal;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .text p {
+    font-size: 1.3em;
+    line-height: 2em;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .distance {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background: #08f;
+    color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 2.4em;
+    overflow: hidden;
+    padding: 0 18px;
+  }
+  .distance span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  

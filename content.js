@@ -5,11 +5,11 @@ chrome.storage.sync.get('endPage', function (item) {
     }
 });
 
-// chrome.storage.get('gameInProgress', function (item) {
-//     if(item.gameInProgress == true){
-displayScoreboard();
-//     }
-// });
+chrome.storage.get('gameInProgress', function (item) {
+    if (item.gameInProgress == true) {
+        displayScoreboard();
+    }
+});
 
 /* Listener for dialog stuff
  * When the inputs change and the start or end page change, do something.
