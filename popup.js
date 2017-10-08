@@ -47,6 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 }).then(res => res.json())
                     .then(res => console.log(res));
 
+                chrome.runtime.sendMessage({
+                    type: "start_game", should: true
+                });
+
                 loadUsers();
                 document.getElementById("startPage").value = startTitle;
                 document.getElementById("endPage").value = endTitle;
@@ -79,6 +83,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     body: JSON.stringify({ name: document.getElementById("userName").value, page: startTitle })
                 }).then(res => res.json())
                     .then(res => console.log(res));
+
+                chrome.runtime.sendMessage({
+                    type: "start_game", should: true
+                });
 
                 document.getElementById("startPage").value = startTitle;
                 document.getElementById("endPage").value = endTitle;
