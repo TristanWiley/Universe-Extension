@@ -5,7 +5,8 @@
     "permissions": [
         "storage",
         "notifications",
-        "tabs"
+        "tabs",
+        "alarms"
     ],
     "browser_action": {
         "default_title": "Change colors.",
