@@ -25,6 +25,7 @@
             ],
             "js": [
                 "jquery.slim.min.js",
+                "solitaireVictory.js",
                 "content.js"
             ],
             "run_at": "document_end"

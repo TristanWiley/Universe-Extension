@@ -2,6 +2,11 @@ var names = ["Pixelephant", "Ninjavu", "Pignorant", "Plazy", "Pandaily", "Tweeta
 var tempUsers = [{ name: "Joe", curPage: "https://en.wikipedia.org/wiki/Silence_of_the_North", pages: 3 }, { name: "Joe", curPage: "https://en.wikipedia.org/wiki/La_Estacion_Theme_Park", pages: 6 }, { name: "Joe", curPage: "https://en.wikipedia.org/wiki/Maltese_people_in_the_United_Kingdom", pages: 9 }];
 
 document.addEventListener('DOMContentLoaded', function () {
+    $('.img_logo').click(function () {
+        console.log('sup')
+        $(this).solitaireVictory()
+    });
+
     chrome.storage.sync.get('startPageTitle', function (item) {
         var startPage = document.getElementById('startPage');
         startPage.value = item.startPageTitle;

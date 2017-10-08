@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         });
     }
     if (request.type == "start_game"){
-        interval = setInterval(checkIfSomeoneWon, 1000);        
+        interval = setInterval(checkIfSomeoneWon, 500);        
     }
     sendResponse();
 });
