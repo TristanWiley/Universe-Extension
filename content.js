@@ -18,14 +18,17 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 //Detect player win
 chrome.storage.sync.get('endPageTitle', function (item) {
     if (item.endPageTitle == $("#firstHeading").text()) {
-        overlayConfetti();
+        for (var i = 0; i < 15; i++) {
+            var left = (Math.floor(Math.random() * 80) + 0) + -10;
+            $('body').prepend('<img class="solitareCard" src="https://i.imgur.com/67gOiNZ.png" style="width: 110px; position: absolute; top: -549px; z-index: 100; left: ' + left + '%;""></img>')
+        }
+        $('.solitareCard').solitaireVictory();
     }
 });
 
 chrome.runtime.sendMessage({
     type: "add_page", page: $("#firstHeading").text()
 });
-console.log($("#firstHeading").text());
 
 /* Listener for dialog stuff
  * When the inputs change and the start or end page change, do something.
