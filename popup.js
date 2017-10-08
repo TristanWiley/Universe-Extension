@@ -2,14 +2,14 @@ var names = ["Pixelephant", "Ninjavu", "Pignorant", "Plazy", "Pandaily", "Tweeta
 var tempUsers = [{ name: "Joe", curPage: "https://en.wikipedia.org/wiki/Silence_of_the_North", pages: 3 }, { name: "Joe", curPage: "https://en.wikipedia.org/wiki/La_Estacion_Theme_Park", pages: 6 }, { name: "Joe", curPage: "https://en.wikipedia.org/wiki/Maltese_people_in_the_United_Kingdom", pages: 9 }];
 
 document.addEventListener('DOMContentLoaded', function () {
-    chrome.storage.sync.get('startPage', function (item) {
+    chrome.storage.sync.get('startPageTitle', function (item) {
         var startPage = document.getElementById('startPage');
-        startPage.value = item.startPage;
+        startPage.value = item.startPageTitle;
     });
 
-    chrome.storage.sync.get('endPage', function (item) {
+    chrome.storage.sync.get('endPageTitle', function (item) {
         var endPage = document.getElementById('endPage');
-        endPage.value = item.endPage;
+        endPage.value = item.endPageTitle;
     });
 
     chrome.storage.sync.get('userName', function (item) {
@@ -22,15 +22,102 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById("startGame").onclick = function () {
-        chrome.storage.sync.set({ 'startPage': document.getElementById("startPage").value }, function () { });
-        chrome.storage.sync.set({ 'endPage': document.getElementById("endPage").value }, function () { });
-        chrome.storage.sync.set({ 'userName': document.getElementById("userName").value }, function () { });
+        fetch("http://universe-game.v6p2dfukmp.us-east-1.elasticbeanstalk.com/api/get_current_game", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (response) {
+            return response.json();
+        }).then(function (body) {
+            var json = body.status;
+            if (!Object.keys(json.players).includes(document.getElementById("userName").value)) {
+                var startPage = json.start_page;
+                var endPage = json.end_page;
+                var startTitle = json.start_page_title;
+                var endTitle = json.end_page_title;
+
+                fetch('http://universe-game.v6p2dfukmp.us-east-1.elasticbeanstalk.com/api/submit_update', {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: document.getElementById("userName").value, page: startTitle })
+                }).then(res => res.json())
+                    .then(res => console.log(res));
+
+                loadUsers();
+                document.getElementById("startPage").value = startTitle;
+                document.getElementById("endPage").value = endTitle;
+                chrome.storage.sync.set({ 'startPageTitle': startTitle }, function () { });
+                chrome.storage.sync.set({ 'endPageTitle': endTitle }, function () { });
+                chrome.storage.sync.set({ 'startPage': startPage }, function () { });
+                chrome.storage.sync.set({ 'endPage': endPage }, function () { });
+                chrome.tabs.update({ url: startPage });
+                chrome.storage.sync.set({ 'gameInProgress': true }, function () { });
+                chrome.storage.sync.set({ 'userName': document.getElementById("userName").value }, function () { });
+            }
+        });
     }
 
-    tempUsers.forEach(function (entry) {
-        $('.container').append('<li class="item"> <div class="avatar" style="background-image: url(svg/' + entry.name.charAt(0) + '.svg); background-size: 75%; background-repeat: no-repeat; background-position: center;"></div> <div class="text"> <h1>' + entry.name + '</h1> <p>' + getTitle(entry.curPage) + '</p> </div> <div class="distance"> <span>' + entry.pages + '</span> </div> </li>');
-    });
+    document.getElementById("createNewGame").onclick = function () {
+        fetch('http://universe-game.v6p2dfukmp.us-east-1.elasticbeanstalk.com/api/start_new_game').then(res => res.json())
+            .then(res => {
+                var json = res.status;
+                var startPage = json.start_page;
+                var endPage = json.end_page;
+                var startTitle = json.start_page_title;
+                var endTitle = json.end_page_title;
+
+                fetch('http://universe-game.v6p2dfukmp.us-east-1.elasticbeanstalk.com/api/submit_update', {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: document.getElementById("userName").value, page: startTitle })
+                }).then(res => res.json())
+                    .then(res => console.log(res));
+
+                document.getElementById("startPage").value = startTitle;
+                document.getElementById("endPage").value = endTitle;
+                chrome.storage.sync.set({ 'startPageTitle': startTitle }, function () { });
+                chrome.storage.sync.set({ 'endPageTitle': endTitle }, function () { });
+                chrome.storage.sync.set({ 'startPage': startPage }, function () { });
+                chrome.storage.sync.set({ 'endPage': endPage }, function () { });
+                chrome.tabs.update({ url: startPage });
+                chrome.storage.sync.set({ 'gameInProgress': true }, function () { });
+                chrome.storage.sync.set({ 'userName': document.getElementById("userName").value }, function () { });
+                // var username = document.getElementById("userName").value;
+                var players = res.status.players
+
+                loadUsers();
+
+                for (entry of Object.keys(players)) {
+                    var entries = players[entry];
+                    $('.container').append('<li class="item"> <div class="avatar" style="background-image: url(svg/' + entry.charAt(0) + '.svg); background-size: 75%; background-repeat: no-repeat; background-position: center;"></div> <div class="text"> <h1>' + entry + '</h1> <p>' + entries[entries.length - 1] + '</p> </div> <div class="distance"> <span>' + (players[entry].length + 1) + '</span> </div> </li>');
+                };
+            });
+
+    }
+
+    loadUsers();
 });
+
+function loadUsers() {
+    fetch('http://universe-game.v6p2dfukmp.us-east-1.elasticbeanstalk.com/api/get_current_game').then(res => res.json())
+        .then(res => {
+            $('.container li').remove();
+            var username = document.getElementById("userName").value;
+            var players = res.status.players
+            console.log(res);
+            for (entry of Object.keys(players)) {
+                var entries = players[entry];
+                $('.container').append('<li class="item"> <div class="avatar" style="background-image: url(svg/' + entry.charAt(0) + '.svg); background-size: 75%; background-repeat: no-repeat; background-position: center;"></div> <div class="text"> <h1>' + entry + '</h1> <p>' + entries[entries.length - 1] + '</p> </div> <div class="distance"> <span>' + (players[entry].length) + '</span> </div> </li>');
+            };
+        });
+}
 
 //Get title from Wikipedia url
 function getTitle(url) {
