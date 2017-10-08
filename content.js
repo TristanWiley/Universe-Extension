@@ -1,3 +1,9 @@
+window.addEventListener("keydown",function (e) {
+    if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) { 
+        e.preventDefault();
+    }
+})
+
 chrome.storage.sync.get('gameInProgress', function (item) {
     if (item.gameInProgress == true) {
         $('head').append('<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">');
