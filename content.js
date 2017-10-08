@@ -1,5 +1,5 @@
 window.addEventListener("keydown",function (e) {
-    if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) { 
+    if (e.keyCode === 114 || ((e.ctrlKey || e.metaKey) && e.keyCode === 70)) { 
         e.preventDefault();
     }
 })
