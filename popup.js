@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 for (entry of Object.keys(players)) {
                     var entries = players[entry];
-                    $('.container').append('<li class="item"> <div class="avatar" style="background-image: url(svg/' + entry.charAt(0) + '.svg); background-size: 75%; background-repeat: no-repeat; background-position: center;"></div> <div class="text"> <h1>' + entry + '</h1> <p>' + entries[entries.length - 1] + '</p> </div> <div class="distance"> <span>' + (players[entry].length + 1) + '</span> </div> </li>');
+                    $('.container').append('<li class="item"> <div class="avatar" style="background-image: url(svg/' + entry.charAt(0) + '.svg); background-size: 75%; background-repeat: no-repeat; background-position: center;"></div> <div class="text"> <h1>' + entry + '</h1><br /> <p>' + entries[entries.length - 1] + '</p> </div> <div class="distance"> <span>' + (players[entry].length + 1) + '</span> </div> </li>');
                 };
             });
 

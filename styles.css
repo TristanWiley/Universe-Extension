@@ -4,18 +4,31 @@ body {
     padding: 0px;
     width: 350px;
     height: 525px;
-    background: #F06449;
+    background: #ffaeae;
+    color: #0f074c;
+    font-family: 'VT323', monospace !important;
 }
+
 
 .main {
     text-align: center;
-    display: table-cell;
-    font-family: sans-serif;
     font-size: 0.8em;
     height: 100vh;
-    width: 90%;
-    padding-top: 30px;
+    padding: 30px;
     margin: 0 auto;
+}
+
+h1.logo {
+  display: inline-block;
+  font-size: 68px;
+  margin: 0;
+}
+
+.img_logo {
+  display: inline-block;
+  height: 40px;
+  margin-right: 15px;
+  width: auto;
 }
 
 img{
@@ -23,98 +36,116 @@ img{
 }
 
 input {
+  background: #ffe1e1;
+  color: #0f074c;
     width: 100%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    color: #000000;
-    height: 50px;
-    font-size: 12px;
-    padding: 0 12px;
-    margin-top: 10px;
+    height: 40px;
+    font-family: 'VT323', monospace !important;
+    font-size: 18px;
+    padding: 0 10px;
+    margin-top: 5px;
     margin-bottom: 10px;
     border: 0;
 }
 
-.footer{
-    bottom: 0;
+button {
+  border-radius: 10px;
+  border-width: 0;
+  color: #fff;
+  background-color: #0f074c;
+  font-family: 'VT323', monospace !important;
+  font-size: 18px;
+  margin: 5px 10px 10px 10px;
+  padding: 10px 20px;
+}
+
+span.label {
+  font-size: 14px;
+}
+
+.footer {
+    bottom: 0;left: 0;
     position: absolute;
     width: 100%;
     margin-bottom: 10px;
 }
 
-.userName{
+.userName {
     width: 50%;
     margin-top: 0px;
+    border-radius: 10px;
+    background: #fff;
 }
 
-  .container {
-    margin: 10px 0 0 0;
-    padding: 0;
-    position: relative;
-    height: 235px !important;
-    overflow-y: auto;
-  }
-  
-  .item {
-    background: #ddd;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    height: 60px;
-    margin: 2px 0;
-    width: 100%;
-    -webkit-transition: width 0.6s ease;
-    transition: width 0.6s ease;
-  }
+.container {
+  margin: 10px 0 0 0;
+  padding: 0;
+  position: relative;
+  height: 235px !important;
+  overflow-y: auto;
+}
 
-  .avatar {
-    background: #f80;
-    position: relative;
-    width: 60px;
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
-  }
-  
-  .text {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    overflow: hidden;
-    padding: 8px;
-  }
-  .text h1 {
-    font-size: 1.8em;
-    font-weight: normal;
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .text p {
-    font-size: 1.3em;
-    line-height: 2em;
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
-  .distance {
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    background: #08f;
-    color: #fff;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    font-size: 2.4em;
-    overflow: hidden;
-    padding: 0 18px;
-  }
-  .distance span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
+.item {
+  background: #ffe1e1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
+  margin: 2px 0;
+  width: 100%;
+  -webkit-transition: width 0.6s ease;
+  transition: width 0.6s ease;
+}
+
+.avatar {
+  background: #fff;
+  position: relative;
+  width: 50px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.text {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  overflow: hidden;
+  padding: 8px;
+}
+.text h1 {
+  font-size: 1.8em;
+  font-weight: normal;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text p {
+  font-size: 1.3em;
+  line-height: 2em;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.distance {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #0f074c;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 2.4em;
+  overflow: hidden;
+  padding: 0 18px;
+}
+.distance span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

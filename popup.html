@@ -1,29 +1,28 @@
 <!doctype html>
 <html>
-
 <head>
-    <title>Set Page Color Popup</title>
+    <title>WikiHunt</title>
     <script src="jquery.slim.min.js"></script>
     <script src="popup.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
 </head>
 
 <body>
     <div class="main">
-        <img src="logo.png">
-        <input id="startPage" type="text" placeholder="Start Page URL" value="">
-        <input id="endPage" type="text" value="">
-        <button id="startGame">Start Game</button>
-        <button id="createNewGame">Create New Game</button>
+        <img class="img_logo" src="king.png" /><h1 class="logo">WikiHunt</h1>
 
-        <ul class="container">
+        <button id="startGame">Join Game</button>
+        <button id="createNewGame">Restart Game</button>
+        <input id="startPage" type="text" placeholder="Start Page URL" value="" disabled>
+        <span class="label">to</span>
+        <input id="endPage" type="text" value="" disabled>
 
-        </ul>
+        <ul class="container"></ul>
         <div class="footer">
-            <h3>Your name is </h3>
+            <span class="label">Your name is </span>
             <input id="userName" class="userName" value="">
         </div>
     </div>
 </body>
-
 </html>
