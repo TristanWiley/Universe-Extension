@@ -1,7 +1,14 @@
 chrome.storage.sync.get('gameInProgress', function (item) {
     if (item.gameInProgress == true) {
+        $('head').append('<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">');
+        $('.mw-wiki-logo').attr('href', '#');
         $('#mw-head').remove();
+        // $('#mw-page-base').remove();
+        $('#coordinates').remove();
+        $('.metadata').remove();
         $(".portal").remove();
+        $(".sistersitebox").remove();
+        $("#footer").remove();
         $('#catlinks').click(function (e) {
             e.preventDefault();
         });
@@ -11,7 +18,7 @@ chrome.storage.sync.get('gameInProgress', function (item) {
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.type == "polling") {
-        console.log("DANK");
+        // console.log("DANK");
     }
 });
 
@@ -56,12 +63,20 @@ function displayScoreboard() {
             .then(res => {
                 var json = res.status
                 var players = json.players;
-                $("#mw-panel").append("<br><br><h4>Current Pages: " + json.players[name.userName].length + "</h4>");
-                $('#mw-head-base').append("<marquee id='playersMarquee'></marquee>");
-                for (key of Object.keys(players)) {
-                    var entries = players[key];
-                    $('#playersMarquee').append(key + " is on page <span style=\"text-decoration=underlined;text-decoration: underline;\">" + entries[entries.length - 1] + "</span>     |     ");
-                }
+
+                var wrapper = '<div class="wikihunt__wrapper">'
+                wrapper = wrapper + '<img class="wikihunt__logo_img" src="https://i.imgur.com/67gOiNZ.png" /><h3 class="wikihunt wikihunt__logo">WikiHunt</h3><div class="wikihunt wikihunt__label">Your page history</div>';
+                wrapper = wrapper + '<ol class="wikihunt wikihunt__history">';
+                json.players[name.userName].forEach(function (elem) {
+                    wrapper = wrapper + '<li>' + elem + '</li>';
+                }, this);
+                wrapper = wrapper + '</ol>';
+                $('#mw-panel').append(wrapper + '</div>');
+                // $('#mw-head-base').append("<marquee id='playersMarquee'></marquee>");
+                // for (key of Object.keys(players)) {
+                //     var entries = players[key];
+                //     $('#playersMarquee').append(key + " is on page <span style=\"text-decoration=underlined;text-decoration: underline;\">" + entries[entries.length - 1] + "</span>     |     ");
+                // }
             });
     });
 }

@@ -23,6 +23,9 @@
             "matches": [
                 "<all_urls>"
             ],
+            "css": [
+                "wikipedia.css"
+            ],
             "js": [
                 "jquery.slim.min.js",
                 "solitaireVictory.js",

@@ -1,0 +1,40 @@
+.wikihunt {
+    font-family: 'VT323', monospace !important;
+}
+
+.wikihunt__wrapper {
+    background-color: #ffaeae;
+    border-radius: 10px;
+    color: #0f074c;
+    text-align: center;
+    padding: 20px 0;
+    margin: 5px;
+}
+
+.wikihunt__logo_img {
+    width: 40px;
+    height: auto;
+    text-align: center;
+}
+
+.wikihunt__logo {
+    color: #0f074c;
+    display: block;
+    font-size: 28px;
+}
+
+.wikihunt__history {
+    font-size: 12px;
+    text-align: left;
+    margin-left: 25px;
+}
+
+.wikihunt__label {
+    text-align: center;
+    width: 100%;
+}
+
+.external,
+.citation {
+    color: #ccc !important;
+}
